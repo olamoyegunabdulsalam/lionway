@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F7F5EF;
+  --color-ink: #101820;
+  --color-navy: #142A3F;
+  --color-solar: #F5B72C;
+  --color-solar-deep: #E88924;
+  --color-muted-blue: #315B78;
+  --color-neutral-warm: #DCD8CE;
+
+  --font-display: "Manrope", system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --bg: #F7F5EF;
+    --bg-elevated: #FFFFFF;
+    --ink: #101820;
+    --ink-soft: #3A424A;
+    --ink-faint: #8A8F96;
+    --line: rgba(16, 24, 32, 0.12);
+    --line-strong: rgba(16, 24, 32, 0.22);
+  }
+
+  html.dark {
+    --bg: #0B1118;
+    --bg-elevated: #101820;
+    --ink: #F7F5EF;
+    --ink-soft: #C2C7CC;
+    --ink-faint: #6B737B;
+    --line: rgba(247, 245, 239, 0.12);
+    --line-strong: rgba(247, 245, 239, 0.22);
+  }
+
+  html {
+    background-color: var(--bg);
+    color: var(--ink);
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-display);
+    overflow-x: hidden;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: var(--color-solar);
+    color: var(--color-ink);
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-solar-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .editorial-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px);
+    background-size: calc(100% / 12) 100%;
+  }
+
+  .hairline { border-color: var(--line); }
+  .hairline-strong { border-color: var(--line-strong); }
+
+  .bg-page { background-color: var(--bg); }
+  .bg-elevated { background-color: var(--bg-elevated); }
+  .text-ink { color: var(--ink); }
+  .text-ink-soft { color: var(--ink-soft); }
+  .text-ink-faint { color: var(--ink-faint); }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
